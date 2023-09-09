@@ -191,5 +191,5 @@ path <- "C:/Users/u14339/UD Office 365 AD/Norad-Avd-Kunnskap - General/06. Porte
 readr::write_csv2(df_agreement_info,
                   paste0(path, "agreement_info.csv"))
 
-readr::write_csv2(df_agreement_info,
+readr::write_csv2(df_agreement_disbursement,
                   paste0(path, "agreement_disbursement.csv"))
