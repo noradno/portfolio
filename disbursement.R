@@ -76,7 +76,11 @@ df_agreement_info <- df |>
          sector,
          main_sector_description,
          sub_sector_description,
-         agreement_description
+         agreement_description,
+         gender_equality,
+         bio_diversity,
+         climate_change_mitigation,
+         climate_change_adaptation
          )
 
 # Keep only distinct rows
