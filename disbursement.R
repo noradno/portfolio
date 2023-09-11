@@ -126,6 +126,21 @@ df_frameagreement_totals <- df_agreement_totals |>
 df_frameagreement_info <- df_frameagreement_totals |> 
   mutate(parent_agreement_no = agreement_no, .after = agreement_no)
 
+# Create column agreement phase from the subframes to the frame agreement (all sub-units are the same phase)
+df_frameagreement_phase <- df |>
+  filter(agreement_type == "Subunit") |>
+  group_by(
+    parent_agreement_no,
+    agr_phase
+  ) |>
+  summarise(n = n()) |> 
+  ungroup() |> 
+  select(-n)
+
+df_frameagreement_info <- df_frameagreement_info |> 
+  left_join(df_frameagreement_phase, by = "parent_agreement_no")
+
+
 # Create column agreement_type - specify as frame agreements
 
 df_frameagreement_info <- df_frameagreement_info |> 
@@ -172,21 +187,6 @@ df_frameagreement_disbursement <- df |>
   summarise(amount = sum(amount)) |> 
   ungroup()
 
-# Add agreement phase from the subframes to the frame agreement (all sub-units are the same phase)
-df_frameagreement_phase <- df |>
-  filter(agreement_type == "Subunit") |>
-  group_by(
-    parent_agreement_no,
-    agr_phase
-  ) |>
-  summarise(n = n()) |> 
-  ungroup() |> 
-  select(-n)
-
-df_frameagreement_disbursement <- df_frameagreement_disbursement |> 
-  left_join(df_frameagreement_phase, by ="parent_agreement_no")
-
-
 
 # Checks: one frameagreement is not present in the disbursement datset. Perhaps there are nothing disbursed.
 vec_test <- unique(df_frameagreement_disbursement$parent_agreement_no)
@@ -204,6 +204,7 @@ df_frameagreement_disbursement <- df_frameagreement_disbursement |>
 # By using the bind_rows any unmatched column names gives value NA
 
 df_agreement_disbursement <- bind_rows(df_agreement_disbursement, df_frameagreement_disbursement)
+
 
 
 # Save dataframes ---------------------------------------------------------
