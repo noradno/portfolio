@@ -168,11 +168,11 @@ df_agreement_info |>
 df_agreement_disbursement <- df |>
   group_by(
     agreement_no,
-    year,
     status_of_payment,
     chapter_post,
     cost_center_name,
-    programme_officer_name
+    programme_officer_name,
+    year
   ) |>
   summarise(amount = sum(amount)) |> 
   ungroup()
@@ -182,11 +182,14 @@ df_frameagreement_disbursement <- df |>
   filter(agreement_type == "Subunit") |>
   group_by(
     parent_agreement_no,
+    status_of_payment,
+    chapter_post,
+    cost_center_name,
+    programme_officer_name,
     year
   ) |>
   summarise(amount = sum(amount)) |> 
   ungroup()
-
 
 # Checks: one frameagreement is not present in the disbursement datset. Perhaps there are nothing disbursed.
 vec_test <- unique(df_frameagreement_disbursement$parent_agreement_no)
@@ -204,8 +207,6 @@ df_frameagreement_disbursement <- df_frameagreement_disbursement |>
 # By using the bind_rows any unmatched column names gives value NA
 
 df_agreement_disbursement <- bind_rows(df_agreement_disbursement, df_frameagreement_disbursement)
-
-
 
 # Save dataframes ---------------------------------------------------------
 
