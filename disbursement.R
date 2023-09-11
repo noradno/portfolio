@@ -51,6 +51,11 @@ vec_frameagreements <- df |>
 df <- df |> 
   filter(chapter != "5309")
 
+# Include current year and the next 3 years
+df <- df |> 
+  filter(year %in% c(min(year):(min(year)+3))) 
+
+
 # Keep only distinct rows (remove duplicate rows)
 # There are three duplicates, check what this is.
 #df_distinct <- df |> distinct()
@@ -145,9 +150,6 @@ df_agreement_info |>
 # In this dataset an agreement number can have multiple records (across these non-static info)
 
 # Select columns and create grouped amount summaries across columns
-
-# I temporarily added parent_agreement_no and agreement_type
-
 df_agreement_disbursement <- df |>
   group_by(
     agreement_no,
@@ -160,7 +162,7 @@ df_agreement_disbursement <- df |>
   summarise(amount = sum(amount)) |> 
   ungroup()
 
-
+# Calculate the grouped sums of the subunits to find the frame agreement sums
 df_frameagreement_disbursement <- df |>
   filter(agreement_type == "Subunit") |>
   group_by(
@@ -170,16 +172,33 @@ df_frameagreement_disbursement <- df |>
   summarise(amount = sum(amount)) |> 
   ungroup()
 
+# Add agreement phase from the subframes to the frame agreement (all sub-units are the same phase)
+df_frameagreement_phase <- df |>
+  filter(agreement_type == "Subunit") |>
+  group_by(
+    parent_agreement_no,
+    agr_phase
+  ) |>
+  summarise(n = n()) |> 
+  ungroup() |> 
+  select(-n)
+
+df_frameagreement_disbursement <- df_frameagreement_disbursement |> 
+  left_join(df_frameagreement_phase, by ="parent_agreement_no")
+
+
+
 # Checks: one frameagreement is not present in the disbursement datset. Perhaps there are nothing disbursed.
 vec_test <- unique(df_frameagreement_disbursement$parent_agreement_no)
 
 df_agreement_disbursement |> 
   filter(agreement_no %in% vec_frameagreements)
 
-# Create column parent_agreement_no - here a duplicate of agreement_no
+# Create column parent_agreement_no - a duplicate column of agreement_no
 df_frameagreement_disbursement <- df_frameagreement_disbursement |> 
   mutate(agreement_no = parent_agreement_no, .before = parent_agreement_no) |> 
   select(-parent_agreement_no)
+
 
 # Add the frame agreements to the bottom of the df_agreement_disbursement dataset.
 # By using the bind_rows any unmatched column names gives value NA
