@@ -40,13 +40,6 @@ df <- df |>
 df <- df |>
   mutate(agreement_type = if_else(disb_code == "S", "Subunit", "Standard", missing = "Standard"))
 
-# A vector storing unique frame agreement numbers
-vec_frameagreements <- df |> 
-  filter(disb_code == "S") |> 
-  select(parent_agreement_no) |> 
-  unique() |> 
-  pull()
-
 # Remove chapter 5309 - Repayments, as this is not relevant in this context
 df <- df |> 
   filter(chapter != "5309")
@@ -54,6 +47,13 @@ df <- df |>
 # Include current year and the next 3 years
 df <- df |> 
   filter(year %in% c(min(year):(min(year)+3))) 
+
+# A vector storing unique frame agreement numbers
+vec_frameagreements <- df |> 
+  filter(disb_code == "S") |> 
+  select(parent_agreement_no) |> 
+  unique() |> 
+  pull()
 
 
 # Keep only distinct rows (remove duplicate rows)
