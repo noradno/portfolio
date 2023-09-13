@@ -156,6 +156,12 @@ df_agreement_info |>
   count(agreement_no) |> 
   filter(n > 1)
 
+# Replace NA with N/A
+df_agreement_info <- df_agreement_info |> 
+  mutate(
+    across(where(is.character), ~replace_na(.x, "N/A"))
+  )
+
 # THe agreement_no column is unique, and is therefor fit for showing disbursement data.
 # The parent_agreement_no column is not unique and is fit to have a relation to portfolio objective
 # Perhaps it will be useful to include a agreement_type column (like a agreement type, or S,A,M column) but that is at least more important in the agreement_disbursement dataset
@@ -207,6 +213,12 @@ df_frameagreement_disbursement <- df_frameagreement_disbursement |>
 # By using the bind_rows any unmatched column names gives value NA
 
 df_agreement_disbursement <- bind_rows(df_agreement_disbursement, df_frameagreement_disbursement)
+
+# Replace NA with N/A
+df_agreement_disbursement <- df_agreement_disbursement |> 
+  mutate(
+    across(where(is.character), ~replace_na(.x, "N/A"))
+  )
 
 # Save dataframes ---------------------------------------------------------
 
