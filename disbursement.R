@@ -1,4 +1,6 @@
 # PTA disbursement level report
+# In PTA, select Disbursement level report, Date after = 01.01.2023, Cost center group = Norad, Programme area = 03, 12. Tick off Statistics and Agreement description. Thants all.
+
 # Two dataframes: 1) Agreement info, and 2) Disbursement info
 # The disbursement level report is supplemented by frame agreement info and disbursement
 
@@ -219,6 +221,21 @@ df_agreement_disbursement <- df_agreement_disbursement |>
   mutate(
     across(where(is.character), ~replace_na(.x, "N/A"))
   )
+
+# Remove subunits without a parent agreement
+# If there are subunits without a corresponding frameagreement, the subunits should be excluded from the df_agreement_info and df_agreement_disbursement datasets
+# These are A frame agreements with to little information to be included in PTA Agreement total reports
+# NB: This code can be improved: instead of finding subunits not present in agreements_total, we can find subunits without a parent_agreement_no in df_agreement_no
+
+# Find values in  vec_frameagreements that are not present in df_agreement_total
+missing_frameagreements <- vec_frameagreements[!vec_frameagreements %in% df_agreement_totals$agreement_no]
+
+# Filter the data frames to exclude these subunits orfans
+df_agreement_info <- df_agreement_info |> 
+  filter(!str_detect(agreement_no, str_c(missing_frameagreements, collapse = "|")))
+
+df_agreement_disbursement <- df_agreement_disbursement |> 
+  filter(!str_detect(agreement_no, str_c(missing_frameagreements, collapse = "|")))
 
 # Save dataframes ---------------------------------------------------------
 
