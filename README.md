@@ -73,6 +73,12 @@ Purpose: This report takes the Disbursement level.csv file produced in Step 1 an
 
 1.  Run script disbursement_totals.R
 
+## Step 4: Run R-script agreement_title.R
+
+Purpose: This report takes the Agreement totals.csv file produced in Step 1 as input and and saves the agreement number and agreement title in an xlsx file in sharepoint prod folder.
+
+1.  Run script agreement_title.R
+
 ## Step 4: That's it!
 
 The dashboard will be updated daily from the agreement_info.csv and agreement_disbursement.csv.
