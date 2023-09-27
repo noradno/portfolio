@@ -79,6 +79,6 @@ Purpose: This report takes the Agreement totals.csv file produced in Step 1 as i
 
 1.  Run script agreement_title.R
 
-## Step 4: That's it!
+## That's it!
 
-The dashboard will be updated daily from the agreement_info.csv and agreement_disbursement.csv.
+The dashboard will be updated daily from the agreement_info.csv and agreement_disbursement.csv, and the power apps will be updated using the agreement_title.xlsx.
