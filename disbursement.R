@@ -42,13 +42,17 @@ df <- df |>
 df <- df |>
   mutate(agreement_type = if_else(disb_code == "S", "Subunit", "Standard", missing = "Standard"))
 
+# Remove rejected agreements (agreement phase E)
+df <- df |> 
+  filter(agr_phase != "E")
+
 # Remove chapter 5309 - Repayments, as this is not relevant in this context
 df <- df |> 
   filter(chapter != "5309")
 
-# Include current year and the next 3 years
+# Exlude years higher than 2040 to remove misspelled years (like year 2125)
 df <- df |> 
-  filter(year %in% c(min(year):(min(year)+3))) 
+  filter(year < 2040)
 
 # A vector storing unique frame agreement numbers
 vec_frameagreements <- df |> 
@@ -230,7 +234,7 @@ df_agreement_disbursement <- df_agreement_disbursement |>
 # Find values in  vec_frameagreements that are not present in df_agreement_total
 missing_frameagreements <- vec_frameagreements[!vec_frameagreements %in% df_agreement_totals$agreement_no]
 
-# Filter the data frames to exclude these subunits orfans
+# Filter the data frames to exclude these subunit orphans
 df_agreement_info <- df_agreement_info |> 
   filter(!str_detect(agreement_no, str_c(missing_frameagreements, collapse = "|")))
 

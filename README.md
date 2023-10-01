@@ -71,7 +71,7 @@ Purpose: This report takes the Agreement totals.csv file produced in Step 1 as i
 
 Purpose: This report takes the Disbursement level.csv file produced in Step 1 and the agreement_totals.csv prodused in Step 2 as input and saves to separate datasets in sharepoint prod folder.
 
-1.  Run script disbursement_totals.R
+1.  Run script disbursement.R
 
 ## Step 4: Run R-script agreement_title.R
 
