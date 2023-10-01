@@ -6,6 +6,7 @@ library(tidyr)
 library(stringr)
 library(janitor)
 library(readr)
+library(openxlsx2)
 
 # Load
 path <- "C:/Users/u14339/UD Office 365 AD/Norad-Avd-Kunnskap - General/06. Porteføljestyring/P-Dash/data_raw/pta_reports/Agreement totals.csv"
@@ -25,11 +26,20 @@ df_title <-
   select(agreement_no, agreement_title) |> 
   head(-2)
 
-# Save dataframes ---------------------------------------------------------
+# Save data ---------------------------------------------------------
 
-# Save datasets to prod folder
+# Save data as xlsx in table format to prod folder
 path <- "C:/Users/u14339/UD Office 365 AD/Norad-Avd-Kunnskap - General/06. Porteføljestyring/P-Dash/prod/data/"
 
-writexl::write_xlsx(df_title,
-                  paste0(path, "agreement_title.xlsx"))
-
+## Create Workbook, specify table name (name to refer to in Power apps etc) and save
+wb <- wb_workbook()
+wb$add_worksheet("Sheet1")
+write_datatable(
+  wb = wb,
+  sheet = "Sheet1",
+  x = df_title,
+  table_name = "table_agreement_title"
+)
+wb_save(wb,
+        file = paste0(path, "agreement_title.xlsx"),
+        overwrite = TRUE)
