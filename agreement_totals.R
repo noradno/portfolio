@@ -1,4 +1,5 @@
 # PTA Agreement totals report to get frame agreement data on title, partner and period.
+# In addition to get expected agreement total column for all frame and standard agreements.
 # Selections in Agreement totals report: In PTA, select Signed after 01.01.2000, Agreement Phase A,B,C,D, Programme area 3,12, Tick off Responsible unit, Flexi column Agreement period
 
 library(dplyr)
@@ -30,15 +31,17 @@ df <- df |>
   select(agreement_no,
          agreement_title,
          agreement_partner,
-         agr_period)
+         agr_period,
+         expected_agreement_total)
 
-# Create agreement from and two, and rename agro_period
+# Create agreement from and two, and rename agr_period and relocate columns
 df <- df |>
   mutate(
     agreement_period_from = str_sub(agr_period, end = 4),
     agreement_period_to = str_sub(agr_period, start = -4)
   ) |>
-  rename(agreement_period = agr_period)
+  rename(agreement_period = agr_period) |> 
+  relocate(expected_agreement_total, .after = last_col())
 
 # Save to output folder
 readr::write_csv2(df, "output/agreement_totals.csv")
