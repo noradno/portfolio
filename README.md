@@ -1,6 +1,14 @@
 # Create data files for the portfolio dashboard
 
-Create PTA csv files for P-dash and save to sharepoint.
+Create PTA csv files for P-dash and save to sharepoint. The following files are created:
+
+-   agreement_info.csv
+
+-   agreement_disbursement.csv
+
+-   agreement_total.csv
+
+-   agreement_title.xlsx
 
 ## Step 0: Backup files
 
@@ -81,4 +89,4 @@ Purpose: This report takes the Agreement totals.csv file produced in Step 1 as i
 
 ## That's it!
 
-The dashboard will be updated daily from the agreement_info.csv and agreement_disbursement.csv, and the power apps will be updated using the agreement_title.xlsx.
+The dashboard will be updated daily from the agreement_info.csv, agreement_disbursement.csv and agreement_total.csv, and the power apps will be updated using the agreement_title.xlsx.
