@@ -54,7 +54,7 @@ Purpose: The report is used for disbursements and agreement information for agre
 2.  Select Reports -\> Disbursement level
 3.  Pane Basic criteria: leave all selections empty
 4.  Pane Advanced criteria
-    -   Date after: 01.01.2023 (current year)
+    -   Date after: 01.01.2021 (current year - 2)
     -   Cost center group: Norad
     -   Programme area: 03;12
     -   Leave other selections empty
