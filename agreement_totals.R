@@ -34,6 +34,10 @@ df <- df |>
          agr_period,
          expected_agreement_total)
 
+# The expected_agreement_total is in 1000NOK, must make it to NOK
+df <- df |> 
+  mutate(expected_agreement_total = expected_agreement_total * 1000)
+
 # Create agreement from and two, and rename agr_period and relocate columns
 df <- df |>
   mutate(
