@@ -19,6 +19,17 @@
       ],
       "Hash": "470851b6d5d0ac559e9d01bb352b4021"
     },
+    "Rcpp": {
+      "Package": "Rcpp",
+      "Version": "1.0.11",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "methods",
+        "utils"
+      ],
+      "Hash": "ae6cbbe1492f4de79c45fce06f967ce8"
+    },
     "bit": {
       "Package": "bit",
       "Version": "4.0.5",
@@ -214,6 +225,23 @@
         "R"
       ],
       "Hash": "7ce2733a9826b3aeb1775d56fd305472"
+    },
+    "openxlsx2": {
+      "Package": "openxlsx2",
+      "Version": "1.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "R6",
+        "Rcpp",
+        "grDevices",
+        "magrittr",
+        "stringi",
+        "utils",
+        "zip"
+      ],
+      "Hash": "02d543303f348bff0663a6bcaa23196b"
     },
     "pillar": {
       "Package": "pillar",
@@ -506,12 +534,12 @@
       ],
       "Hash": "c0e49a9760983e81e55cdd9be92e7182"
     },
-    "writexl": {
-      "Package": "writexl",
-      "Version": "1.4.2",
+    "zip": {
+      "Package": "zip",
+      "Version": "2.3.0",
       "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "43da939eaf6681c88eba977b9012dad9"
+      "Repository": "RSPM",
+      "Hash": "d98c94dacb7e0efcf83b0a133a705504"
     }
   }
 }
