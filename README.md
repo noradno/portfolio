@@ -1,6 +1,6 @@
-# Create data files for the portfolio dashboard
+# Create data files for P-dash
 
-A procedure to updated data files for P-dash. P-dash are connected to these files, and when overwriting these files the P-dash dashboard and apps will be automatically updated. The following files are created:
+A procedure to updated data files for P-dash. P-dash are connected to these files, and when overwriting these files the [P-dash dashboard and apps will be automatically updated](https://teams.microsoft.com/l/channel/19%3aLKJoSQmxd38wdsg8wxcE-Er4yZAohLQbMnpyCITY5EM1%40thread.tacv2/Generelt?groupId=e07641f9-014c-4a89-b46f-fc3572a6be38&tenantId=bb0f0b4e-4525-4e4b-ba50-1e7775a8fd2e). The following files are created:
 
 -   agreement_info.csv
 
@@ -10,7 +10,9 @@ A procedure to updated data files for P-dash. P-dash are connected to these file
 
 -   agreement_title.xlsx
 
-## Step 0: Backup files
+## Step 0: Backup existing files
+
+Take a backup of the existing data files in case the update procedure fails.
 
 1.  Go to folder: Norad-Avd-Kunnskap - General\\06. Porteføljestyring\\P-Dash\\prod\\data\\
 
@@ -68,10 +70,10 @@ Purpose: The report is used for disbursements and agreement information for agre
     -   Other layout options: leave all selections empty
 6.  Click the excel icon to generate excel report
 7.  Save report
-    1.  The file should be saved in the following folder: Norad-Avd-Kunnskap - General\\06. Porteføljestyring\\P-Dash\\data_raw\\pta_reports\\
-    2.  File name: *Disbursement level*
-    3.  Select file format *CSV UTF-8 (Comma delimited) (\*.csv)*
-    4.  Overwrite the existing *Disbursement level.csv* file
+    -   The file should be saved in the following folder: Norad-Avd-Kunnskap - General\\06. Porteføljestyring\\P-Dash\\data_raw\\pta_reports\\
+    -   File name: *Disbursement level*
+    -   Select file format *CSV UTF-8 (Comma delimited) (\*.csv)*
+    -   Overwrite the existing *Disbursement level.csv* file
 
 ## Step 2: Run R-script agreement_totals.R
 
