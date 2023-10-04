@@ -23,7 +23,7 @@ if (!file.exists(path)) {
 df <-
   read_csv2(
     path,
-    skip = 7,
+    skip = 8,
     name_repair = janitor::make_clean_names,
     col_types = cols(case_no = col_character(),
                      agreement_period_from = col_character(),
