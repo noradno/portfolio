@@ -16,9 +16,7 @@ Take a backup of the existing data files in case the update procedure fails.
 
 1.  Go to folder: Norad-Avd-Kunnskap - General\\06. Porteføljestyring\\P-Dash\\prod\\data\\
 
-2.  There you find multiple csv files: agreement_info.csv, agreement_disbursement.csv and agreement_total
-
-3.  Copy the two files to save to folder Norad-Avd-Kunnskap - General\\06. Porteføljestyring\\P-Dash\\backup\\data\\
+2.  There you find multiple csv files. Copy these files and save by replacing the existing files in folder Norad-Avd-Kunnskap - General\\06. Porteføljestyring\\P-Dash\\backup\\data\\
 
 ## Step 1: Download raw data reports from PTA
 
@@ -43,15 +41,17 @@ Purpose: The report is used for frame agreement information on title, partner an
         -   Flexi column: Agreement period
         -   For public use: Remove selection
 6.  Click the excel icon to generate excel report
-7.  Save report
-    -   The file should be saved in the following folder: Norad-Avd-Kunnskap - General\\06. Porteføljestyring\\P-Dash\\data_raw\\pta_reports\\
-    -   File name: *Agreement totals*
+7.  Save file by replacing the existing file
+    -   Don't do any changes in the PTA report before saving
+    -   Select File -\> Save as
+    -   Select the following folder: Norad-Avd-Kunnskap - General\\06. Porteføljestyring\\P-Dash\\data_raw\\pta_reports\\
     -   Select file format *CSV UTF-8 (Comma delimited) (\*.csv)*
-    -   Overwrite the existing *Agreemen totals.csv* file
+    -   Select the file to overwrite: File name: *Agreement totals*
+    -   Save and accept to replace the existing *Agreemen totals.csv* file
 
 ### PTA report Disbursement level
 
-Purpose: The report is used for disbursements and agreement information for agreements with disbursements current year and onwards.
+Purpose: The report is used for disbursements and agreement information for agreements with disbursements current year -2 and onwards.
 
 1.  Open PTA
 2.  Select Reports -\> Disbursement level
@@ -69,11 +69,14 @@ Purpose: The report is used for disbursements and agreement information for agre
     -   Show totals for: no selection
     -   Other layout options: leave all selections empty
 6.  Click the excel icon to generate excel report
-7.  Save report
-    -   The file should be saved in the following folder: Norad-Avd-Kunnskap - General\\06. Porteføljestyring\\P-Dash\\data_raw\\pta_reports\\
-    -   File name: *Disbursement level*
+7.  Save file by replacing the existing file
+    -   Don't do any changes in the PTA report before saving
+    -   Select File -\> Save as
+    -   Select the following folder: Norad-Avd-Kunnskap - General\\06. Porteføljestyring\\P-Dash\\data_raw\\pta_reports\\
     -   Select file format *CSV UTF-8 (Comma delimited) (\*.csv)*
-    -   Overwrite the existing *Disbursement level.csv* file
+    -   File name: *Disbursement level*
+    -   Select the file to overwrite: File name: *Disbursement level*
+    -   Save and accept to replace the existing *Disbursement level.csv* file
 
 ## Step 2: Run R-script agreement_totals.R
 
