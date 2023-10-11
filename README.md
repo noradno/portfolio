@@ -1,6 +1,8 @@
-# Create data files for P-dash
+# Update data files for P-dash
 
-A procedure to updated data files for P-dash. P-dash are connected to these files, and when overwriting these files the [P-dash dashboard and apps will be automatically updated](https://teams.microsoft.com/l/channel/19%3aLKJoSQmxd38wdsg8wxcE-Er4yZAohLQbMnpyCITY5EM1%40thread.tacv2/Generelt?groupId=e07641f9-014c-4a89-b46f-fc3572a6be38&tenantId=bb0f0b4e-4525-4e4b-ba50-1e7775a8fd2e). The following files are created:
+[P-dash](https://teams.microsoft.com/l/channel/19%3aLKJoSQmxd38wdsg8wxcE-Er4yZAohLQbMnpyCITY5EM1%40thread.tacv2/Generelt?groupId=e07641f9-014c-4a89-b46f-fc3572a6be38&tenantId=bb0f0b4e-4525-4e4b-ba50-1e7775a8fd2e) (Portfolio dashboard and apps) is connected to the data files listed below, and looks for changes in the files 6 times each day. P-dash is automatically updated when these files are updated.
+
+Follow the procedure outlined below to updated these files.
 
 -   agreement_info.csv
 
@@ -10,13 +12,15 @@ A procedure to updated data files for P-dash. P-dash are connected to these file
 
 -   agreement_title.xlsx
 
+When? As for now, we do this procedure every weekday before 9 am, to keep P-dash updated daily.
+
 ## Step 0: Backup existing files
 
-Take a backup of the existing data files in case the update procedure fails.
+Take a copy of the existing data files in case the update procedure fails.
 
 1.  Go to folder: Norad-Avd-Kunnskap - General\\06. Porteføljestyring\\P-Dash\\prod\\data\\
 
-2.  There you find multiple csv files. Copy these files and save by replacing the existing files in folder Norad-Avd-Kunnskap - General\\06. Porteføljestyring\\P-Dash\\backup\\data\\
+2.  Copy all files and save by replacing the existing files in folder Norad-Avd-Kunnskap - General\\06. Porteføljestyring\\P-Dash\\backup\\data\\
 
 ## Step 1: Download raw data reports from PTA
 
@@ -24,7 +28,7 @@ Two PTA reports are used as input files.
 
 ### PTA report Agreement totals
 
-Purpose: The report is used for frame agreement information on title, partner and period. We include all agreements signed after the year 2000 to include all agreements with disbursement this current year and onwards, as the year criteria in Agreement reports is not filtered on disbursement.
+Purpose: The report is used for frame agreement information on title, partner and period. We include all agreements signed after the year 2000 to include all agreements with disbursement this current year and onward, as the year criteria in Agreement reports is not filtered on disbursement.
 
 1.  Open PTA
 2.  Select Reports -\> Agreement totals
@@ -51,7 +55,7 @@ Purpose: The report is used for frame agreement information on title, partner an
 
 ### PTA report Disbursement level
 
-Purpose: The report is used for disbursements and agreement information for agreements with disbursements current year -2 and onwards.
+Purpose: The report is used for disbursements and agreement information for agreements with disbursements current year -2 and onward.
 
 1.  Open PTA
 2.  Select Reports -\> Disbursement level
@@ -83,19 +87,22 @@ Purpose: The report is used for disbursements and agreement information for agre
 Purpose: This report takes the Agreement totals.csv file produced in Step 1 as input and and saves a tidy versjon as agreement_totals.csv in the output/ folder of this prosject directory.
 
 1.  Run script agreement_totals.R
+2.  Restart R to clear Environment: On the top banner i R-Studio click Session -\> Restart R
 
 ## Step 3: Run R-script disbursement.R
 
 Purpose: This report takes the Disbursement level.csv file produced in Step 1 and the agreement_totals.csv prodused in Step 2 as input and saves to separate datasets in sharepoint prod folder.
 
 1.  Run script disbursement.R
+2.  Restart R to clear Environment: On the top banner i R-Studio click Session -\> Restart R
 
 ## Step 4: Run R-script agreement_title.R
 
 Purpose: This report takes the Agreement totals.csv file produced in Step 1 as input and and saves the agreement number and agreement title in an xlsx file in sharepoint prod folder.
 
 1.  Run script agreement_title.R
+2.  Close R-Studio
 
 ## That's it!
 
-The dashboard will be updated daily from the agreement_info.csv, agreement_disbursement.csv and agreement_total.csv, and the power apps will be updated using the agreement_title.xlsx.
+P-dash (dashboard and apps) looks for changes in the data files 6 times a day.
