@@ -1,8 +1,8 @@
 # Update PTA data files for P-dash
 
-[P-dash](https://teams.microsoft.com/l/channel/19%3aLKJoSQmxd38wdsg8wxcE-Er4yZAohLQbMnpyCITY5EM1%40thread.tacv2/Generelt?groupId=e07641f9-014c-4a89-b46f-fc3572a6be38&tenantId=bb0f0b4e-4525-4e4b-ba50-1e7775a8fd2e) (Portfolio dashboard and apps) is connected to the data files listed below, and looks for changes in the files 6 times each day. P-dash is automatically updated when these files are updated.
+[P-dash](https://teams.microsoft.com/l/channel/19%3aLKJoSQmxd38wdsg8wxcE-Er4yZAohLQbMnpyCITY5EM1%40thread.tacv2/Generelt?groupId=e07641f9-014c-4a89-b46f-fc3572a6be38&tenantId=bb0f0b4e-4525-4e4b-ba50-1e7775a8fd2e) (Portfolio dashboard and apps) is connected to the data files listed below. P-dash looks for changes in these files 6 times each day. P-dash is automatically updated when the files are updated.
 
-Follow the procedure outlined below to updated these files.
+Follow the procedure outlined below to update these files.
 
 -   agreement_info.csv
 
@@ -62,7 +62,6 @@ Purpose: The report is used for disbursements and agreement information for agre
 3.  Pane Basic criteria: leave all selections empty
 4.  Pane Advanced criteria
     -   Date after: 01.01.2021 (current year - 2)
-    -   Cost center group: Norad
     -   Agreement phase: A;B;C;D
     -   Programme area: 03;12
     -   Leave other selections empty

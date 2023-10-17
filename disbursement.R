@@ -32,6 +32,10 @@ df <-
   ) |> 
   head(-2)
 
+# Include only Norad cost centers by filtering on cost center names starting with two uppercase letters
+df <- df |> 
+  filter(str_detect(cost_center_name, "^[A-ZÆØÅ]{2}"))
+
 # Create column parent_agreement_no - to create frame agreement numbers from sub frame agreement numbers
 df <- df |> 
   mutate(parent_agreement_no = str_sub(agreement_no, end = 11)) |> 
