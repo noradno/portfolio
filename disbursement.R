@@ -44,7 +44,7 @@ df <- df |>
 # Create column agreement_type to separeate sub units from other agreements
 # Please double check later that the NA values are treated correctly
 df <- df |>
-  mutate(agreement_type = if_else(disb_code == "S", "Subunit", "Standard", missing = "Standard"))
+  mutate(agreement_type = if_else(disb_code %in% c("S", "SD", "SM"), "Subunit", "Standard", missing = "Standard"))
 
 # Remove rejected agreements (agreement phase E)
 df <- df |> 
