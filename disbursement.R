@@ -10,6 +10,8 @@ library(tidyr)
 library(stringr)
 library(janitor)
 library(tibble)
+library(stringr)
+library(openxlsx2)
 
 # Path to PTA agreement totals report (csv)
 path <- "C:/Users/u14339/UD Office 365 AD/Norad-Avd-Kunnskap - General/06. Porteføljestyring/P-Dash/data_raw/pta_reports/Disbursement level.csv"
@@ -272,3 +274,24 @@ readr::write_csv2(df_agreement_disbursement,
 
 readr::write_csv2(df_agreement_total,
                   paste0(path, "agreement_total.csv"))
+
+# An extra xlsx file of agreement_info to use in the partnerregister app
+## Create Workbook, specify table name (name to refer to in Power apps etc) and save
+
+df_partnerregister_agreement_info <- df_agreement_info |> 
+  filter(agreement_type != "Subunit") |> 
+  rename(Title = agreement_no) |> 
+  mutate(agreement_period = str_replace_all(agreement_period, " - ", "-")) |> 
+  mutate(sector = if_else(agreement_type == "Frame", NA, sector))
+
+wb <- wb_workbook()
+wb$add_worksheet("Sheet1")
+write_datatable(
+  wb = wb,
+  sheet = "Sheet1",
+  x = df_partnerregister_agreement_info,
+  table_name = "partnerregister_agreement_info")
+
+wb_save(wb,
+        file = paste0(path, "partnerregister_agreement_info.xlsx"),
+        overwrite = TRUE)
