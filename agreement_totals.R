@@ -9,7 +9,8 @@ library(janitor)
 library(readr)
 
 # Load
-path <- "C:/Users/u14339/UD Office 365 AD/Norad-Avd-Kunnskap - General/06. Porteføljestyring/P-Dash/data_raw/pta_reports/Agreement totals.csv"
+path <- "C:/Users/aaw262/Norad/Norad-Avd-Kunnskap - General/06. Portef\u00F8ljestyring/P-Dash/data_raw/pta_reports/Agreement totals.csv"
+
 
 # Return error if file does not exist
 if (!file.exists(path)) {
@@ -21,7 +22,7 @@ df <-
   read_csv2(path,
             skip = 13,
             name_repair = janitor::make_clean_names,
-            locale = readr::locale(decimal_mark = ",", grouping_mark = " ")
+            locale = readr::locale(decimal_mark = ",", grouping_mark = " ", encoding = "UTF-8")
   ) |> 
   select(-starts_with("x")) |> 
   head(-2)

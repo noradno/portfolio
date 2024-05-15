@@ -13,8 +13,8 @@ library(tibble)
 library(stringr)
 library(openxlsx2)
 
-# Path to PTA agreement totals report (csv)
-path <- "C:/Users/u14339/UD Office 365 AD/Norad-Avd-Kunnskap - General/06. Porteføljestyring/P-Dash/data_raw/pta_reports/Disbursement level.csv"
+# Path to PTA disbursement level report (csv)
+path <- "C:/Users/aaw262/Norad/Norad-Avd-Kunnskap - General/06. Portef\u00F8ljestyring/P-Dash/data_raw/pta_reports/Disbursement level.csv"
 
 # Return error if file does not exist
 if (!file.exists(path)) {
@@ -30,7 +30,7 @@ df <-
     col_types = cols(case_no = col_character(),
                      agreement_period_from = col_character(),
                      agreement_period_to = col_character()),
-    locale = readr::locale(decimal_mark = ",", grouping_mark = " ")
+    locale = readr::locale(decimal_mark = ",", grouping_mark = " ", encoding = "UTF-8")
   ) |> 
   head(-2)
 
@@ -264,7 +264,7 @@ df_agreement_total <- df_agreement_totals |>
 # Save dataframes ---------------------------------------------------------
 
 # Save datasets to prod folder
-path <- "C:/Users/u14339/UD Office 365 AD/Norad-Avd-Kunnskap - General/06. Porteføljestyring/P-Dash/prod/data/"
+path <- "C:/Users/aaw262/Norad/Norad-Avd-Kunnskap - General/06. Portef\u00F8ljestyring/P-Dash/prod/data/"
 
 readr::write_csv2(df_agreement_info,
                   paste0(path, "agreement_info.csv"))
