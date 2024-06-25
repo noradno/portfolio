@@ -26,6 +26,22 @@ df_title <-
   select(agreement_no, agreement_title) |> 
   head(-2)
 
+# Add column of agreement type (from file produced by disbursement.R)
+# Including standard and frame agreements
+# There are many missing values, as there are many old agreements in df_title not present in the disbursements dataset
+df_subunit <- readr::read_csv2("C:/Users/aaw262/Norad/Norad-Avd-Kunnskap - General/06. Portef\u00F8ljestyring/P-Dash/prod/data/agreement_info.csv") |> 
+  filter(agreement_type == "Subunit") |> 
+  select(agreement_no, agreement_title)
+
+df_title <- bind_rows(df_title, df_subunit)
+
+df_title <- df_title |> 
+  mutate(parent_agreement_no = str_sub(agreement_no, 1, 11))
+
+df_title <- df_title |> 
+  relocate(agreement_no, parent_agreement_no, agreement_title)
+
+
 # Save data ---------------------------------------------------------
 
 # Save data as xlsx in table format to prod folder
